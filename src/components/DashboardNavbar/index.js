@@ -10,6 +10,7 @@ import Breadcrumbs from "../Breadcrumbs";
 import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from "./styles";
 import { useMaterialUIController, setTransparentNavbar, setMiniSidenav } from "../../context";
 import { breadcrumbMap } from "../../routes";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 function DashboardNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
@@ -64,9 +65,9 @@ function DashboardNavbar({ absolute, light, isMini }) {
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
             <MDBox color={light ? "white" : "inherit"}>
-              <Link to="/sign-in">
+              <Link to="https://github.com/MinmusLin/DiabRetina_AI" target="_blank">
                 <IconButton sx={navbarIconButton} size="small" disableRipple>
-                  <Icon sx={iconsStyle}>account_circle</Icon>
+                  <GitHubIcon sx={iconsStyle} color="inherit" />
                 </IconButton>
               </Link>
               <IconButton

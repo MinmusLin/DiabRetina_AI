@@ -1,21 +1,6 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 function collapseItem(theme, ownerState) {
   const { palette, transitions, breakpoints, boxShadows, borders, functions } = theme;
   const { active, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = ownerState;
-
   const { white, transparent, dark, grey, gradients } = palette;
   const { md } = boxShadows;
   const { borderRadius } = borders;
@@ -66,7 +51,6 @@ function collapseItem(theme, ownerState) {
 function collapseIconBox(theme, ownerState) {
   const { palette, transitions, borders, functions } = theme;
   const { transparentSidenav, whiteSidenav, darkMode, active } = ownerState;
-
   const { white, dark } = palette;
   const { borderRadius } = borders;
   const { pxToRem } = functions;
@@ -99,7 +83,6 @@ const collapseIcon = ({ palette: { white, gradients } }, { active }) => ({
 function collapseText(theme, ownerState) {
   const { typography, transitions, breakpoints, functions } = theme;
   const { miniSidenav, transparentSidenav, active } = ownerState;
-
   const { size, fontWeightRegular, fontWeightLight } = typography;
   const { pxToRem } = functions;
 

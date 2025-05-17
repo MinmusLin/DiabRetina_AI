@@ -1,43 +1,12 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect } from "react";
-
-// react-github-btn
-import GitHubButton from "react-github-btn";
-
-// @mui material components
 import Divider from "@mui/material/Divider";
 import Switch from "@mui/material/Switch";
 import IconButton from "@mui/material/IconButton";
-import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
-
-// @mui icons
-import TwitterIcon from "@mui/icons-material/Twitter";
-import FacebookIcon from "@mui/icons-material/Facebook";
-
-// Material Dashboard 2 React components
 import MDBox from "../MDBox";
 import MDTypography from "../MDTypography";
 import MDButton from "../MDButton";
-
-// Custom styles for the Configurator
 import ConfiguratorRoot from "./ConfiguratorRoot";
-
-// Material Dashboard 2 React context
 import {
   useMaterialUIController,
   setOpenConfigurator,
@@ -61,20 +30,13 @@ function Configurator() {
   const [disabled, setDisabled] = useState(false);
   const sidenavColors = ["primary", "dark", "info", "success", "warning", "error"];
 
-  // Use the useEffect hook to change the button state for the sidenav type based on window size.
   useEffect(() => {
-    // A function that sets the disabled state of the buttons for the sidenav type.
     function handleDisabled() {
       return window.innerWidth > 1200 ? setDisabled(false) : setDisabled(true);
     }
 
-    // The event listener that's calling the handleDisabled function when resizing the window.
     window.addEventListener("resize", handleDisabled);
-
-    // Call the handleDisabled function to set the state with the initial value.
     handleDisabled();
-
-    // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleDisabled);
   }, []);
 
@@ -94,7 +56,6 @@ function Configurator() {
   const handleFixedNavbar = () => setFixedNavbar(dispatch, !fixedNavbar);
   const handleDarkMode = () => setDarkMode(dispatch, !darkMode);
 
-  // sidenav type buttons styles
   const sidenavTypeButtonsStyles = ({
     functions: { pxToRem },
     palette: { white, dark, background },
@@ -104,7 +65,6 @@ function Configurator() {
     background: darkMode ? background.sidenav : white.main,
     color: darkMode ? white.main : dark.main,
     border: `${borderWidth[1]} solid ${darkMode ? white.main : dark.main}`,
-
     "&:hover, &:focus, &:focus:not(:hover)": {
       background: darkMode ? background.sidenav : white.main,
       color: darkMode ? white.main : dark.main,
@@ -112,7 +72,6 @@ function Configurator() {
     },
   });
 
-  // sidenav type active button styles
   const sidenavTypeActiveButtonStyles = ({
     functions: { pxToRem, linearGradient },
     palette: { white, gradients, background },
@@ -120,7 +79,6 @@ function Configurator() {
     height: pxToRem(39),
     background: darkMode ? white.main : linearGradient(gradients.dark.main, gradients.dark.state),
     color: darkMode ? background.sidenav : white.main,
-
     "&:hover, &:focus, &:focus:not(:hover)": {
       background: darkMode ? white.main : linearGradient(gradients.dark.main, gradients.dark.state),
       color: darkMode ? background.sidenav : white.main,
@@ -138,12 +96,11 @@ function Configurator() {
         px={3}
       >
         <MDBox>
-          <MDTypography variant="h5">Material UI Configurator</MDTypography>
+          <MDTypography variant="h5">个性化设置</MDTypography>
           <MDTypography variant="body2" color="text">
-            See our dashboard options.
+            您可以自定义页面外观和布局
           </MDTypography>
         </MDBox>
-
         <Icon
           sx={({ typography: { size }, palette: { dark, white } }) => ({
             fontSize: `${size.lg} !important`,
@@ -158,13 +115,13 @@ function Configurator() {
           close
         </Icon>
       </MDBox>
-
       <Divider />
-
       <MDBox pt={0.5} pb={3} px={3}>
         <MDBox>
-          <MDTypography variant="h6">Sidenav Colors</MDTypography>
-
+          <MDTypography variant="h6">侧边栏颜色</MDTypography>
+          <MDTypography variant="button" color="text">
+            选择不同的侧边栏颜色
+          </MDTypography>
           <MDBox mb={0.5}>
             {sidenavColors.map((color) => (
               <IconButton
@@ -180,11 +137,9 @@ function Configurator() {
                   border: `${borderWidth[1]} solid ${darkMode ? background.sidenav : white.main}`,
                   borderColor: () => {
                     let borderColorValue = sidenavColor === color && dark.main;
-
                     if (darkMode && sidenavColor === color) {
                       borderColorValue = white.main;
                     }
-
                     return borderColorValue;
                   },
                   transition: transitions.create("border-color", {
@@ -193,11 +148,9 @@ function Configurator() {
                   }),
                   backgroundImage: ({ functions: { linearGradient }, palette: { gradients } }) =>
                     linearGradient(gradients[color].main, gradients[color].state),
-
                   "&:not(:last-child)": {
                     mr: 1,
                   },
-
                   "&:hover, &:focus, &:active": {
                     borderColor: darkMode ? white.main : dark.main,
                   },
@@ -207,18 +160,17 @@ function Configurator() {
             ))}
           </MDBox>
         </MDBox>
-
         <MDBox mt={3} lineHeight={1}>
-          <MDTypography variant="h6">Sidenav Type</MDTypography>
+          <MDTypography variant="h6">侧边栏样式</MDTypography>
           <MDTypography variant="button" color="text">
-            Choose between different sidenav types.
+            选择不同的侧边栏样式
           </MDTypography>
-
           <MDBox
             sx={{
               display: "flex",
               mt: 2,
-              mr: 1,
+              gap: 1,
+              width: "100%",
             }}
           >
             <MDButton
@@ -226,47 +178,46 @@ function Configurator() {
               variant="gradient"
               onClick={handleDarkSidenav}
               disabled={disabled}
-              fullWidth
-              sx={
+              sx={[
+                { flex: 1 },
                 !transparentSidenav && !whiteSidenav
                   ? sidenavTypeActiveButtonStyles
-                  : sidenavTypeButtonsStyles
-              }
+                  : sidenavTypeButtonsStyles,
+              ]}
             >
-              Dark
+              深色
             </MDButton>
-            <MDBox sx={{ mx: 1, width: "8rem", minWidth: "8rem" }}>
-              <MDButton
-                color="dark"
-                variant="gradient"
-                onClick={handleTransparentSidenav}
-                disabled={disabled}
-                fullWidth
-                sx={
-                  transparentSidenav && !whiteSidenav
-                    ? sidenavTypeActiveButtonStyles
-                    : sidenavTypeButtonsStyles
-                }
-              >
-                Transparent
-              </MDButton>
-            </MDBox>
+            <MDButton
+              color="dark"
+              variant="gradient"
+              onClick={handleTransparentSidenav}
+              disabled={disabled}
+              sx={[
+                { flex: 1 },
+                transparentSidenav && !whiteSidenav
+                  ? sidenavTypeActiveButtonStyles
+                  : sidenavTypeButtonsStyles,
+              ]}
+            >
+              透明
+            </MDButton>
             <MDButton
               color="dark"
               variant="gradient"
               onClick={handleWhiteSidenav}
               disabled={disabled}
-              fullWidth
-              sx={
+              sx={[
+                { flex: 1 },
                 whiteSidenav && !transparentSidenav
                   ? sidenavTypeActiveButtonStyles
-                  : sidenavTypeButtonsStyles
-              }
+                  : sidenavTypeButtonsStyles,
+              ]}
             >
-              White
+              浅色
             </MDButton>
           </MDBox>
         </MDBox>
+        <Divider />
         <MDBox
           display="flex"
           justifyContent="space-between"
@@ -274,71 +225,15 @@ function Configurator() {
           mt={3}
           lineHeight={1}
         >
-          <MDTypography variant="h6">Navbar Fixed</MDTypography>
-
+          <MDTypography variant="h6">固定导航栏</MDTypography>
           <Switch checked={fixedNavbar} onChange={handleFixedNavbar} />
         </MDBox>
         <Divider />
         <MDBox display="flex" justifyContent="space-between" alignItems="center" lineHeight={1}>
-          <MDTypography variant="h6">Light / Dark</MDTypography>
-
+          <MDTypography variant="h6">夜间模式</MDTypography>
           <Switch checked={darkMode} onChange={handleDarkMode} />
         </MDBox>
         <Divider />
-        <MDBox mt={3} mb={2}>
-          <MDButton
-            component={Link}
-            href="https://www.creative-tim.com/learning-lab/react/quick-start/material-dashboard/"
-            target="_blank"
-            rel="noreferrer"
-            color={darkMode ? "light" : "dark"}
-            variant="outlined"
-            fullWidth
-          >
-            view documentation
-          </MDButton>
-        </MDBox>
-        <MDBox display="flex" justifyContent="center">
-          <GitHubButton
-            href="https://github.com/creativetimofficial/material-dashboard-react"
-            data-icon="octicon-star"
-            data-size="large"
-            data-show-count="true"
-            aria-label="Star creativetimofficial/material-dashboard-react on GitHub"
-          >
-            Star
-          </GitHubButton>
-        </MDBox>
-        <MDBox mt={2} textAlign="center">
-          <MDBox mb={0.5}>
-            <MDTypography variant="h6">Thank you for sharing!</MDTypography>
-          </MDBox>
-
-          <MDBox display="flex" justifyContent="center">
-            <MDBox mr={1.5}>
-              <MDButton
-                component={Link}
-                href="//twitter.com/intent/tweet?text=Check%20Material%20Dashboard%20React%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23react%20%mui&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fmaterial-dashboard-react"
-                target="_blank"
-                rel="noreferrer"
-                color="dark"
-              >
-                <TwitterIcon />
-                &nbsp; Tweet
-              </MDButton>
-            </MDBox>
-            <MDButton
-              component={Link}
-              href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard-react"
-              target="_blank"
-              rel="noreferrer"
-              color="dark"
-            >
-              <FacebookIcon />
-              &nbsp; Share
-            </MDButton>
-          </MDBox>
-        </MDBox>
       </MDBox>
     </ConfiguratorRoot>
   );

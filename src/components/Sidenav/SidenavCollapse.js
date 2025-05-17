@@ -1,39 +1,15 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
-
-// @mui material components
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Icon from "@mui/material/Icon";
-
-// Material Dashboard 2 React components
 import MDBox from "../MDBox";
-
-// Custom styles for the SidenavCollapse
 import {
   collapseItem,
   collapseIconBox,
   collapseIcon,
   collapseText,
 } from "./styles/sidenavCollapse";
-
-// Material Dashboard 2 React context
 import { useMaterialUIController } from "../../context";
 
 function SidenavCollapse({ icon, name, active, ...rest }) {
@@ -65,7 +41,6 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
             icon
           )}
         </ListItemIcon>
-
         <ListItemText
           primary={name}
           sx={(theme) =>
@@ -82,12 +57,10 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
   );
 }
 
-// Setting default values for the props of SidenavCollapse
 SidenavCollapse.defaultProps = {
   active: false,
 };
 
-// Typechecking props for the SidenavCollapse
 SidenavCollapse.propTypes = {
   icon: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,

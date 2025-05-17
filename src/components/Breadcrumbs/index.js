@@ -5,7 +5,7 @@ import Icon from "@mui/material/Icon";
 import MDBox from "../MDBox";
 import MDTypography from "../MDTypography";
 
-function Breadcrumbs({ icon, title, route, light }) {
+function Breadcrumbs({ icon, title, subtitle, route, light }) {
   const routes = route.slice(0, -1);
 
   return (
@@ -50,7 +50,7 @@ function Breadcrumbs({ icon, title, route, light }) {
           color={light ? "white" : "dark"}
           sx={{ lineHeight: 0 }}
         >
-          {title.replace("-", " ")}
+          {title}
         </MDTypography>
       </MuiBreadcrumbs>
       <MDTypography
@@ -60,7 +60,7 @@ function Breadcrumbs({ icon, title, route, light }) {
         color={light ? "white" : "dark"}
         noWrap
       >
-        {title.replace("-", " ")}
+        {subtitle}
       </MDTypography>
     </MDBox>
   );
@@ -73,6 +73,7 @@ Breadcrumbs.defaultProps = {
 Breadcrumbs.propTypes = {
   icon: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
   route: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
   light: PropTypes.bool,
 };

@@ -50,7 +50,7 @@ function Tables() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  历史检测记录
+                  病变诊断分析历史记录
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>

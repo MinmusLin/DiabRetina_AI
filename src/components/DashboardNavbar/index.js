@@ -9,6 +9,7 @@ import MDBox from "../MDBox";
 import Breadcrumbs from "../Breadcrumbs";
 import { navbar, navbarContainer, navbarRow, navbarIconButton, navbarMobileMenu } from "./styles";
 import { useMaterialUIController, setTransparentNavbar, setMiniSidenav } from "../../context";
+import { breadcrumbMap } from "../../routes";
 
 function DashboardNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
@@ -52,12 +53,18 @@ function DashboardNavbar({ absolute, light, isMini }) {
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
         <MDBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
-          <Breadcrumbs icon="home" title={route[route.length - 1]} route={route} light={light} />
+          <Breadcrumbs
+            icon="home"
+            title={breadcrumbMap[route[route.length - 1]]?.title || "1"}
+            subtitle={breadcrumbMap[route[route.length - 1]]?.subtitle || "2"}
+            route={route}
+            light={light}
+          />
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
             <MDBox color={light ? "white" : "inherit"}>
-              <Link to="/authentication/sign-in/basic">
+              <Link to="/sign-in">
                 <IconButton sx={navbarIconButton} size="small" disableRipple>
                   <Icon sx={iconsStyle}>account_circle</Icon>
                 </IconButton>

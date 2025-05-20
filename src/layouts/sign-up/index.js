@@ -43,22 +43,10 @@ function Cover() {
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Checkbox />
-              <MDTypography
-                variant="button"
-                fontWeight="regular"
-                color="text"
-                sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-              >
+              <MDTypography variant="button" fontWeight="regular" color="text" sx={{ uml: -1 }}>
                 &nbsp;&nbsp;我已阅读并同意&nbsp;
               </MDTypography>
-              <MDTypography
-                component="a"
-                href="#"
-                variant="button"
-                fontWeight="bold"
-                color="info"
-                textGradient
-              >
+              <MDTypography variant="button" fontWeight="bold" color="info" textGradient>
                 《用户协议》
               </MDTypography>
             </MDBox>

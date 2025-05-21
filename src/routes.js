@@ -1,5 +1,6 @@
 import Diagnosis from "layouts/diagnosis";
 import History from "layouts/history";
+import Agent from "./layouts/agent";
 import Education from "layouts/education";
 import SignIn from "layouts/sign-in";
 import SignUp from "layouts/sign-up";
@@ -13,6 +14,10 @@ const breadcrumbMap = {
   history: {
     title: "历史记录",
     subtitle: "查看您的糖尿病性视网膜病变诊断分析历史记录",
+  },
+  agent: {
+    title: "医疗助手",
+    subtitle: "基于循证医学提供疾病知识科普、诊断流程解释和预防建议，不替代专业医疗建议",
   },
   education: {
     title: "教育科普",
@@ -40,6 +45,14 @@ const routes = [
     icon: <Icon fontSize="small">history</Icon>,
     route: "/history",
     component: <History />,
+  },
+  {
+    type: "collapse",
+    name: "医疗助手",
+    key: "agent",
+    icon: <Icon fontSize="small">smart_toy</Icon>,
+    route: "/agent",
+    component: <Agent />,
   },
   {
     type: "collapse",
